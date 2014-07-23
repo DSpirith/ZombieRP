@@ -60,9 +60,9 @@ TEAM_SCAVENGER = DarkRP.createJob("Scavenger", {
 	model = {"models/player/scavenger/scavenger.mdl"},
 	description = [[You wander around the wasteland, your like
 		a normal survivor, but you get some guns to survive.]],
-	weapons = {"m9k_colt191", "fas2_m24"},
+	weapons = {"m9k_1897winchester"},
 	command = "scavenger",
-	max = 3,
+	max = 2,
 	salary = 15,
 	admin = 0,
 	vote = false,
@@ -94,9 +94,9 @@ TEAM_POLICE = DarkRP.createJob("Survival Protection", {
 		Type /wanted <name> to alert the public to this criminal
 		OR go to tab and warrant someone by clicking the warrant button
 		!!You also hunt down the Runners!!]],
-	weapons = {"arrest_stick", "unarrest_stick", "m9k_colt1911", "stunstick", "door_ram", "weaponchecker", "handcuffs"},
+	weapons = {"arrest_stick", "unarrest_stick", "fas2_m1911", "stunstick", "door_ram", "weaponchecker"},
 	command = "cp",
-	max = 6,
+	max = 4,
 	salary = 30,
 	admin = 0,
 	vote = true,
@@ -138,7 +138,7 @@ TEAM_GANG = DarkRP.createJob("Bandit", {
 	description = [[The lowest person of crime.
 		A bandit generally works for the Bandit Leader who runs the crime family.
 		The Bandit Leader sets your agenda and you follow it or you might be punished.]],
-	weapons = {"m9k_luger"},
+	weapons = {},
 	command = "gangster",
 	max = 5,
 	salary = 20,
@@ -203,7 +203,7 @@ TEAM_MEDIC = DarkRP.createJob("Medic", {
 		Right click with the Medical Kit to heal yourself.]],
 	weapons = {"fas2_ifak"},
 	command = "medic",
-	max = 5,
+	max = 3,
 	salary = 30,
 	admin = 0,
 	vote = false,
@@ -225,7 +225,7 @@ TEAM_CHIEF = DarkRP.createJob("Survival Protection Chief", {
 		Type /wanted <name> to alert the public to this criminal
 		Type /jailpos to set the Jail Position
 		!!You also hunt down the Runners!!]],
-	weapons = {"arrest_stick", "unarrest_stick", "m9k_colt191", "m9k_mossberg590", "stunstick", "door_ram", "weaponchecker", "handcuffs"},
+	weapons = {"arrest_stick", "unarrest_stick", "fas2_m1911", "m9k_mossberg590", "stunstick", "door_ram", "weaponchecker"},
 	command = "chief",
 	max = 1,
 	salary = 75,
@@ -261,7 +261,7 @@ TEAM_MAYOR = DarkRP.createJob("Governor", {
 	Everyone must be inside during a lockdown.
 	The cops patrol the area
 	/unlockdown to end a lockdown]],
-	weapons = {"m9k_colt191"},
+	weapons = {},
 	command = "mayor",
 	max = 1,
 	salary = 50,
@@ -292,7 +292,7 @@ TEAM_HOBO = DarkRP.createJob("Hobo", {
 		outside someone else's door]],
 	weapons = {"weapon_bugbait"},
 	command = "hobo",
-	max = 5,
+	max = 3,
 	salary = 0,
 	admin = 0,
 	vote = false,
@@ -306,7 +306,7 @@ TEAM_SECRETSERVICE = DarkRP.createJob("Secret Service", {
 	color = Color(15, 255, 111, 255),
 	model = "models/player/barney.mdl",
 	description = [[Your a secret service, protect mayor at all costs.]],
-	weapons = {"arrest_stick", "m9k_colt191", "m9k_mp9"},
+	weapons = {"arrest_stick", "fas2_m1911", "weaponchecker", "stunstick"},
 	command = "secretservice",
 	max = 2,
 	salary = 45,
@@ -335,6 +335,9 @@ TEAM_NINJA = DarkRP.createJob("Ninja", {
 	mayorCanSetSalary = false,
 	candemote = true,
 	ninja = true
+	customCheck = function(ply)
+    return ply:GetUserGroup() == "Trusted" or ply:GetUserGroup() == "Member" or ply:GetUserGroup() == "donator"
+    end
 })
 
 //Admin
@@ -364,9 +367,9 @@ TEAM_RUNNER = DarkRP.createJob("Runner", {
 		
 		SKILL:
 		Parkour]],
-	weapons = {"m9k_luger", "climb_swep2"},
+	weapons = {"climb_swep2"},
 	command = "parkour",
-	max = 3,
+	max = 2,
 	salary = 15,
 	admin = 0,
 	vote = false,
@@ -381,7 +384,7 @@ TEAM_HITMAN = DarkRP.createJob("Hitman", {
 	color = Color(84, 34, 94, 255),
 	model = "models/player/guerilla.mdl",
 	description = [[A hitman gets payed to kill people.]],
-	weapons = {"m9k_luger", "fas2_dv2", "m9k_intervention"},
+	weapons = {"fas2_dv2"},
 	command = "hitman",
 	max = 1,
 	salary = 25,
@@ -391,10 +394,9 @@ TEAM_HITMAN = DarkRP.createJob("Hitman", {
 	mayorCanSetSalary = false,
 	candemote = true,
 	hitman = true,
-	help = {
-		"Do NOT abuse this job",
-		"You only kill people when you're payed for it"
-    }
+	customCheck = function(ply)
+    return ply:GetUserGroup() == "Trusted" or ply:GetUserGroup() == "Member" or ply:GetUserGroup() == "donator"
+    end
 })
 
 //S.W.A.T
@@ -410,9 +412,9 @@ TEAM_SWAT = DarkRP.createJob("Military Infantry", {
 		warrant for his/her arrest.
 		Type /wanted <name> to alert the public to this criminal
 		Type /jailpos to set the Jail Position]],
-	weapons = {"arrest_stick", "unarrest_stick", "m9k_colt1911", "stunstick", "door_ram", "weaponchecker", "fas2_m4a1", "handcuffs"},
+	weapons = {"arrest_stick", "fas2_m1911", "fas2_m4a1"},
 	command = "swat",
-	max = 4,
+	max = 3,
 	salary = 35,
 	admin = 0,
 	vote = true,
@@ -422,7 +424,7 @@ TEAM_SWAT = DarkRP.createJob("Military Infantry", {
 	cp = true,
 	SWAT = true,
 	customCheck = function(ply)
-    return ply:GetUserGroup() == "Trusted" or ply:GetUserGroup() == "Member" or ply:GetUserGroup() == "donator"
+    return ply:GetUserGroup() == "Member" or ply:GetUserGroup() == "donator"
     end
 })
 
@@ -440,7 +442,7 @@ TEAM_SWATLEADER = DarkRP.createJob("Military Commander", {
 		warrant for his/her arrest.
 		Type /wanted <name> to alert the public to this criminal
 		Type /jailpos to set the Jail Position]],
-	weapons = {"m9k_colt1911", "arrest_stick", "unarrest_stick", "stunstick", "door_ram", "weaponchecker", "m9k_mossberg590", "fas2_m4a1", "handcuffs"},
+	weapons = {"fas2_m1911", "arrest_stick", "unarrest_stick", "m9k_mossberg590", "fas2_m4a1"},
 	command = "swatleader",
 	max = 1,
 	salary = 55,
@@ -461,7 +463,7 @@ TEAM_SWATLEADER = DarkRP.createJob("Military Commander", {
 //S.W.A.T-Medic
 TEAM_SWATMEDIC = DarkRP.createJob("Military Medic", {
 	color = Color(19, 81, 124, 255),
-	model = {"models/steinman/bf4/us_04.mdl"},
+	model = {"models/steinman/bf4/ru_04.mdl"},
 	description = [[The Military Team is a very special team.
 	    As the medic you heal your teammates and wounded people.
 		Coordinate the S.P.T force to enforce law in the city.
@@ -473,9 +475,9 @@ TEAM_SWATMEDIC = DarkRP.createJob("Military Medic", {
 		Type /wanted <name> to alert the public to this criminal
 		Type /jailpos to set the Jail Position
 		!!You also hunt down the Runners!!]],
-	weapons = {"m9k_colt1911", "arrest_stick", "unarrest_stick", "fas2_m4a1", "stunstick", "door_ram", "weaponchecker", "fas2_ifak", "handcuffs"},
+	weapons = {"fas2_m1911", "arrest_stick", "fas2_m4a1", "fas2_ifak"},
 	command = "swatmedic",
-	max = 3,
+	max = 2,
 	salary = 55,
 	admin = 0,
 	cp = true,
@@ -502,9 +504,9 @@ TEAM_SWATSNIPER = DarkRP.createJob("Military Sniper", {
 		Type /wanted <name> to alert the public to this criminal
 		Type /jailpos to set the Jail Position
 		!!You also hunt down the Runners!!]],
-	weapons = {"arrest_stick", "unarrest_stick", "m9k_colt1911", "stunstick", "door_ram", "weaponchecker", "fas2_m24", "handcuffs"},
+	weapons = {"arrest_stick", "fas2_m1911", "fas2_m24"},
 	command = "swatsniper",
-	max = 5,
+	max = 2,
 	salary = 50,
 	admin = 0,
 	vote = false,
@@ -518,15 +520,15 @@ TEAM_SWATSNIPER = DarkRP.createJob("Military Sniper", {
 
 TEAM_SWATEXPLOSIVE = DarkRP.createJob("Military Explosives Expert", {
 	color = Color(19, 81, 124, 255),
-	model = {"models/steinman/bf4/ru_04.mdl"},
+	model = {"models/steinman/bf4/us_04.mdl"},
 	description = [[The Military is a very special team.
 	    As Explosive Master your the person that helps raids with explosions.
 		Type /wanted <name> to alert the public to this criminal
 		Type /jailpos to set the Jail Position
 		!!You also hunt down the Runners!!]],
-	weapons = {"arrest_stick", "unarrest_stick", "m9k_colt1911", "stunstick", "weaponchecker", "m9k_mossberg590", "m9k_matador", "weapon_slam", "handcuffs"},
+	weapons = {"arrest_stick", "fas2_m1911", "m9k_matador", "weapon_slam"},
 	command = "swatexplosive",
-	max = 2,
+	max = 1,
 	salary = 50,
 	admin = 0,
 	cp = true,
@@ -547,9 +549,9 @@ TEAM_SWATHACKER = DarkRP.createJob("Military Hacker", {
 		Type /wanted <name> to alert the public to this criminal
 		Type /jailpos to set the Jail Position
 		!!You also hunt down the Runners!!]],
-	weapons = {"arrest_stick", "unarrest_stick", "m9k_colt1911", "fas2_m4a1", "stunstick", "weaponchecker", "weapon_hack_phone", "handcuffs"},
+	weapons = {"arrest_stick", "fas2_m1911", "fas2_m4a1", "weapon_hack_phone"},
 	command = "swathacker",
-	max = 5,
+	max = 2,
 	salary = 50,
 	admin = 0,	
 	vote = false,
@@ -570,9 +572,9 @@ TEAM_SWATSUPPORT = DarkRP.createJob("Military Juggernaut", {
 		Type /wanted <name> to alert the public to this criminal
 		Type /jailpos to set the Jail Position
 		!!You also hunt down the Runners!!]],
-	weapons = {"arrest_stick", "unarrest_stick", "m9k_colt1911", "fas2_m4a1", "riotshield", "stunstick", "weaponchecker", "handcuffs"},
+	weapons = {"arrest_stick", "fas2_m1911", "m9k_pkm"},
 	command = "swatjugger",
-	max = 5,
+	max = 1,
 	salary = 100,
 	admin = 0,
 	vote = false,
@@ -591,10 +593,10 @@ TEAM_ENGINEER = DarkRP.createJob("Engineer", {
 	description = [[A Technician, an engineer they call him.
 	    He builds crazy stuff like robots and cores.
 		This is THE ENGINEER!]],
-	weapons = {"weapon_crowbar", "weapon_scarrepair"},
+	weapons = {"weapon_scarrepair"},
 	command = "engineer",
-	max = 3,
-	salary = 20,
+	max = 2,
+	salary = 40,
 	admin = 0,
 	vote = false,
 	hasLicense = false,
@@ -632,7 +634,7 @@ TEAM_PGUARD = DarkRP.createJob("Personal Guard", {
 	    Do not abuse this job.
 		If they hire you as their personal guard, you NEED to protect them.
 		If you don't, that's breaking the rules, goodluck!]],
-	weapons = {"m9k_colt1911"},
+	weapons = {"stunstick", "weaponchecker"},
 	command = "pguard",
 	max = 2,
 	salary = 25,
@@ -670,7 +672,7 @@ TEAM_THIEF = DarkRP.createJob("Thief", {
 	description = [[Steal, mug people is your priority]],
 	weapons = {"lockpick", "keypad_cracker"},
 	command = "thief",
-	max = 3,
+	max = 2,
 	salary = 15,
 	admin = 0,
 	vote = false,
@@ -689,7 +691,7 @@ TEAM_PROTHIEF = DarkRP.createJob("Professional Thief", {
 		<Donator Only>]],
 	weapons = {"pro_lockpick", "prokeypad_cracker"},
 	command = "prothief",
-	max = 4,
+	max = 3,
 	salary = 45,
 	admin = 0,
 	vote = false,
@@ -727,7 +729,7 @@ TEAM_ASSASSIN = DarkRP.createJob("Assassin", {
 		<donator only>]],
 	weapons = {"weapon_crossbow", "blink_swep", "climb_swep2", "fas2_dv2", "vortigaunt_beam"},
 	command = "Assassin",
-	max = 5,
+	max = 1,
 	salary = 45,
 	admin = 0,
 	vote = false,
@@ -738,17 +740,17 @@ TEAM_ASSASSIN = DarkRP.createJob("Assassin", {
 	VIPOnly = true
 })
 
-TEAM_STEAMPILOT = DarkRP.createJob("Steampunk Pilot", {
+TEAM_STEAMPILOT = DarkRP.createJob("Military Tanker", {
 	color = Color(0, 168, 184, 255),
-	model = {"models/jessev92/player/hl2/combine-pilot.mdl"},
+	model = {"models/steinman/bf4/us_03.mdl"},
 	description = [[A Futuristic Soldier, that came to
 		make justice to this, strange, mad world.
 		You are some kind of a cop but you aren't
 		suppose to team with them.
 		---Donator Only---]],
-	weapons = {"arrest_stick", "unarrest_stick", "weapon_357", "weapon_ar2", "stunstick", "door_ram", "handcuffs"},
+	weapons = {"arrest_stick", "fas2_m1911"},
 	command = "steampilot",
-	max = 3,
+	max = 1,
 	salary = 50,
 	admin = 0,
 	vote = false,
