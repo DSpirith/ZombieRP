@@ -290,6 +290,9 @@ GM.Config.DisabledCustomModules = {
 
 -- The list of weapons that players are not allowed to drop. Items set to true are not allowed to be dropped
 GM.Config.DisallowDrop = {
+	["fas2_p226"] = true,
+	["m9k_usas"] = true,
+	["m9k_dragunov"] = true,
 	["m9k_1897winchester"] = true,
 	["fas2_m1911"] = true,
 	["m9k_pkm"] = true,
@@ -368,14 +371,10 @@ GM.Config.DisallowDrop = {
 	["m9k_mp40"] = true,
 	["m9k_mp9"] = true,
 	["dual_weapons"] = true,
-	["weapon_357"] = true,
-	["weapon_ar2"] = true,
 	["fas2_m4a1"] = true,
 	["weapon_hack_phone"] = true,
 	["weapon_lasersmg"] = true,
 	["weapon_laserrpg"] = true,
-	["riotshield"] = true,
-	["handcuffs"] = true,
 	["weapon_hpmstick"] = true,
 	["weapon_slam"] = true
 }
