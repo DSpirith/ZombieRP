@@ -75,6 +75,14 @@ DarkRP.createAmmoType("10x25MM", {
 	category = "Pistol Ammo Types"
 })
 
+DarkRP.createAmmoType("Prism Ammo", {
+    name = "ar2",
+    model = "models/Items/combine_rifle_cartridge01.mdl",
+    price = 160,
+    amountGiven = 120,
+	category = "Futuristic"
+})
+
 DarkRP.createAmmoType(".45 ACP", {
     name = ".45 ACP Ammo",
     model = "models/Items/BoxSRounds.mdl",
