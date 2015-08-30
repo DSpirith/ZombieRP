@@ -57,6 +57,14 @@ DarkRP.createCategory{
 }
 
 DarkRP.createCategory{
+	name = "Futuristic",
+	categorises = "ammo",
+	startExpanded = true,
+	color = Color(94,94,94,255),
+	sortOrder = 1
+}
+
+DarkRP.createCategory{
 	name = "Heavy Pistol Ammo Types",
 	categorises = "ammo",
 	startExpanded = true,
