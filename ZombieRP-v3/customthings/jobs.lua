@@ -18,9 +18,9 @@ http://wiki.darkrp.com/index.php/DarkRP:CustomJobFields
 Add jobs under the following line:
 ---------------------------------------------------------------------------]]
 // #NoSimplerr#
-MemberRanks = {"Member", "donator", "Owner", "superadmin", "admin"}
-TrustedRanks = {"Trusted", "Member", "donator", "Owner", "superadmin", "admin"}
-VIPRanks = {"donator", "Owner", "superadmin", "admin"}
+MemberRanks = {"member", "donator", "moderator", "owner", "superadmin", "admin", "headadmin"}
+TrustedRanks = {"trusted", "member", "moderator", "donator", "owner", "superadmin", "admin", "headadmin"}
+VIPRanks = {"donator", "owner", "moderator", "superadmin", "admin", "headadmin"}
 
 TEAM_CITIZEN = DarkRP.createJob("Survivor", {
 	color = Color(20, 150, 20, 255),
@@ -62,7 +62,7 @@ TEAM_ENGINEER = DarkRP.createJob("Engineer", {
 	model = {"models/player/hostage/hostage_03.mdl"},
 	description = [[You're an engineer.
 		With your crazy craftsmanship.
-		You've learned to make perfect quality vehicles
+		You've learned to repair vehicles
 		just out of scrap metal.
 		Of course with an exchange of money.]],
 	weapons = {"weapon_scarrepair", "weapon_scarrefuel"},
@@ -79,14 +79,12 @@ TEAM_ENGINEER = DarkRP.createJob("Engineer", {
 
 TEAM_POLICE = DarkRP.createJob("Survival Protection", {
 	color = Color(25, 25, 170, 255),
-	model = {"models/csgoswat1pm.mdl", 
-	"models/csgoswat2pm.mdl", 
-	"models/csgoswat3pm.mdl", 
-	"models/csgoswat4pm.mdl"},
+	model = "models/gta5/player/armoredcitycoppm.mdl",
+	PlayerSpawn =function(ply) ply:SetBodygroup(0, 1) ply:SetBodygroup(1, 1) ply:SetBodygroup(5, 1)end,
 	description = [[You're part of the Survival Protection Program.
 		You defend the mojave from criminal activity.
 		!!You also hunt down the Runners!!]],
-	weapons = {"arrest_stick", "unarrest_stick", "fas2_m1911", "weapon_cuff_police", "stunstick", "door_ram", "weaponchecker"},
+	weapons = {"arrest_stick", "fas2_m1911", "weapon_cuff_police", "stunstick"},
 	command = "cp",
 	max = 4,
 	salary = 30,
@@ -97,22 +95,21 @@ TEAM_POLICE = DarkRP.createJob("Survival Protection", {
 	mayorCanSetSalary = true,
 	candemote = true,
 	cp = true,
-	police = true
+	police = true,
+	PlayerSpawn = function(ply) ply:SetArmor(25) end
 })
 
 TEAM_CHIEF = DarkRP.createJob("Survival Protection Chief", {
 	color = Color(20, 20, 255, 255),
-	model = {"models/csgoswat1pm.mdl", 
-	"models/csgoswat2pm.mdl", 
-	"models/csgoswat3pm.mdl", 
-	"models/csgoswat4pm.mdl"},
+	model = "models/gta5/player/armoredcitycoppm.mdl",
+	PlayerSpawn =function(ply) ply:SetBodygroup(0, 0) ply:SetBodygroup(1, 0) ply:SetBodygroup(5, 1)end,
 	description = [[The chief, the leader or commander of the Survival Protection Program.
 		You coordinate your forces, give them things to do.
 		Protect your people from criminal activity.
 		The 
 
 		!!You also hunt down the Runners!!]],
-	weapons = {"arrest_stick", "unarrest_stick", "weapon_cuff_police", "fas2_ragingbull", "stunstick", "door_ram", "weaponchecker"},
+	weapons = {"arrest_stick", "unarrest_stick", "weapon_cuff_police", "fas2_ragingbull", "stunstick"},
 	command = "chief",
 	max = 1,
 	salary = 75,
@@ -123,7 +120,8 @@ TEAM_CHIEF = DarkRP.createJob("Survival Protection Chief", {
 	mayorCanSetSalary = true,
 	candemote = true,
 	cp = true,
-	category = "Government"
+	category = "Government",
+	PlayerSpawn = function(ply) ply:SetArmor(25) end
 })
 
 //Thief
@@ -159,7 +157,7 @@ TEAM_GANG = DarkRP.createJob("Bandit", {
 		mainly for your own survival.]],
 	weapons = {},
 	command = "bandit",
-	max = 5,
+	max = 3,
 	salary = 20,
 	admin = 0,
 	category = "Outlaw",
@@ -168,6 +166,27 @@ TEAM_GANG = DarkRP.createJob("Bandit", {
 	mayorCanSetSalary = false,
 	candemote = true
 })
+
+TEAM_GANGCOOK = DarkRP.createJob("Bandit Chef", {
+	color = Color(75, 75, 75, 255),
+	model = {"models/dpfilms/jetropolice/playermodels/pm_police_bt.mdl",
+	"models/csgoanarchist2pm.mdl",
+	"models/csgoanarchist3pm.mdl",
+	"models/csgoanarchist4pm.mdl"
+	},
+	description = [[Water, food and drugs have always had a big demand. Cook high quality meth and then sell it. The higher the quality, the bigger the price.]],
+	weapons = {},
+	command = "cooker",
+	max = 2,
+	salary = 20,
+	admin = 0,
+	category = "Outlaw",
+	vote = false,
+	hasLicense = false,
+	mayorCanSetSalary = false,
+	candemote = true
+})
+
 TEAM_MOB = DarkRP.createJob("Bandit Leader", {
 	color = Color(25, 25, 25, 255),
 	model = "models/csgoleet4pm.mdl",
@@ -175,7 +194,7 @@ TEAM_MOB = DarkRP.createJob("Bandit Leader", {
 		Someone which brings fear to town.
 		A true gangster before the apocalypse,
 		now leader of the bandits of mojave.]],
-	weapons = {"lockpick", "unarrest_stick", "fas2_p226"},
+	weapons = {"unarrest_stick", "fas2_p226"},
 	command = "banditleader",
 	max = 1,
 	category = "Outlaw",
@@ -185,6 +204,7 @@ TEAM_MOB = DarkRP.createJob("Bandit Leader", {
 	vote = false,
 	hasLicense = false,
 	mayorCanSetSalary = false,
+	PlayerSpawn = function(ply) ply:SetLockpickCount(5) end,
 	candemote = true
 })
 TEAM_GANGMEDIC = DarkRP.createJob("Bandit Medic", {
@@ -211,7 +231,7 @@ TEAM_GANGSNIPER = DarkRP.createJob("Bandit Sniper", {
 	description = [[Long distance engagement is always good for backing up your teammates from a far.]],
 	weapons = {"fas2_m14", "fas2_glock20"},
 	command = "banditsniper",
-	max = 2,
+	max = 1,
 	salary = 150,
 	admin = 0,
 	category = "Outlaw",
@@ -245,7 +265,7 @@ TEAM_GANGHEAVY = DarkRP.createJob("Bandit Heavy", {
 //Guard
 TEAM_PGUARD = DarkRP.createJob("Personal Guard", {
 	color = Color(27, 209, 48, 120),
-	model = "models/csgogign1pm.mdl",
+	model = "models/gta5/player/swatpm.mdl",
 	description = [[As a Personal Guard you can be hired to protect people or their shop.
 		If they hire you as their personal guard, you NEED to protect them.
 		If you don't, that's breaking the rules, good luck!]],
@@ -270,7 +290,7 @@ TEAM_BMDEALER = DarkRP.createJob("Black Market Dealer", {
 		so be careful, you can be arrested by the police on sight!]],
 	weapons = {},
 	command = "BMD",
-	max = 2,
+	max = 1,
 	salary = 25,
 	admin = 0,
 	category = "Outlaw",
@@ -344,7 +364,7 @@ TEAM_SS = DarkRP.createJob("Secret Service", {
     },
     description = [[The governer's personal bodyguards
     	only to be used when a governer is present]],
-	weapons = {"arrest_stick", "unarrest_stick", "weapon_cuff_police", "door_ram", "fas2_mp5k"},
+	weapons = {"arrest_stick", "unarrest_stick", "weapon_cuff_police", "fas2_mp5k"},
 	command = "secretservice",
 	max = 2,
 	salary = 80,
@@ -353,6 +373,7 @@ TEAM_SS = DarkRP.createJob("Secret Service", {
 	vote = true,
 	hasLicense = true,
 	customCheck = function(ply) return table.HasValue(MemberRanks, ply:GetUserGroup()) end,
+	PlayerSpawn = function(ply) ply:SetArmor(25) end,
 	CustomCheckFailMsg = "You need to be Member to play this job! (Play 24h)"
  })
 
@@ -424,14 +445,14 @@ TEAM_ASSASSIN = DarkRP.createJob("Assassin", {
 	CustomCheckFailMsg = "You need to donate in order to become this job!"
 })
 
-// Military Infantry
-TEAM_MILITARY = DarkRP.createJob("Military Infantry", {
-	color = Color(0, 199, 255, 255),
-	model = {"models/csgost64pm.mdl"},
-	description = [[As you were left to rot from the ordinary military,
-		the civilization started their own.
-		Your job is to defend the people from threats.]],
-	weapons = {"arrest_stick", "unarrest_stick", "weapon_cuff_police", "fas2_m4a1", "fas2_m1911", "stunstick"},
+// HECU Infantry
+TEAM_MILITARY = DarkRP.createJob("HECU Marine", {
+	color = Color(166, 166, 166, 255),
+	model = {"models/jessev92/soldier_bms/marine1_poser.mdl"},
+	PlayerSpawn =function(ply) ply:SetSkin(1) ply:SetBodygroup(2, 0) ply:SetBodygroup(4, 2) ply:SetArmor(50)end,
+	description = [[After the defeat in Black Mesa HECU marines were left behind and forgotten, the remnants joined the new Government of a small town in Nevada Desert. 
+		They remain the only military local defence power that is effective not only against aliens, but also human beings.]],
+	weapons = {"arrest_stick", "weapon_cuff_police", "fas2_m4a1", "fas2_m1911", "stunstick"},
 	command = "military",
 	max = 4,
 	salary = 40,
@@ -445,14 +466,13 @@ TEAM_MILITARY = DarkRP.createJob("Military Infantry", {
 	CustomCheckFailMsg = "You need to be Trusted to play this job! (Play 4h)"
 })
 
-// Military Commander
-TEAM_MILITARYCOMMANDER = DarkRP.createJob("Military Commander", {
-	color = Color(0, 190, 246, 255),
-	model = {"models/csgost63pm.mdl"},
-	description = [[As you were left to rot from the ordinary military,
-		the civilization started their own.
-		You are the leader of this military group.
-		You command the group and give orders.]],
+// HECU Commander
+TEAM_MILITARYCOMMANDER = DarkRP.createJob("HECU Commander", {
+	color = Color(166, 166, 166, 255),
+	model = "models/jessev92/soldier_bms/marine1_poser.mdl",
+	PlayerSpawn =function(ply) ply:SetSkin(4) ply:SetBodygroup(2, 1) ply:SetBodygroup(4, 5) ply:SetArmor(50) end,
+	description = [[After the defeat in Black Mesa HECU marines were left behind and forgotten, the remnants joined the new Government of a small town in Nevada Desert. 
+		They remain the only military local defence power that is effective not only against aliens, but also human beings.]],
 	weapons = {"arrest_stick", "unarrest_stick", "weapon_cuff_police", "fas2_m3s90", "fas2_deagle", "stunstick"},
 	command = "militarycommander",
 	max = 1,
@@ -468,17 +488,14 @@ TEAM_MILITARYCOMMANDER = DarkRP.createJob("Military Commander", {
 	CustomCheckFailMsg = "You need to be Member to play this job! (Play 24h)"
 })
 
-// Military Sniper
-TEAM_MILITARYSNIPER = DarkRP.createJob("Military Sniper", {
-	color = Color(0, 199, 255, 255),
-	model = {"models/csgoidf4pm.mdl"},
-	description = [[As you were left to rot from the ordinary military,
-		the civilization started their own.
-		Your job is to defend the people from threats.
-		You are the sniper of these forces.
-		With your trusty sniper rifle you take people down
-		from a distant location.]],
-	weapons = {"arrest_stick", "unarrest_stick", "weapon_cuff_police", "fas2_m24", "fas2_m1911", "stunstick"},
+// HECU Sniper
+TEAM_MILITARYSNIPER = DarkRP.createJob("HECU Sniper", {
+	color = Color(166, 166, 166, 255),
+	model = {"models/jessev92/soldier_bms/marine1_poser.mdl"},
+	PlayerSpawn =function(ply) ply:SetSkin(16) ply:SetBodygroup(2, 0) ply:SetBodygroup(4, 6) ply:SetArmor(50) end,
+	description = [[After the defeat in Black Mesa HECU marines were left behind and forgotten, the remnants joined the new Government of a small town in Nevada Desert. 
+		They remain the only military local defence power that is effective not only against aliens, but also human beings.]],
+	weapons = {"arrest_stick", "weapon_cuff_police", "fas2_m24", "fas2_m1911", "stunstick"},
 	command = "militarysniper",
 	max = 2,
 	salary = 150,
@@ -492,17 +509,14 @@ TEAM_MILITARYSNIPER = DarkRP.createJob("Military Sniper", {
 	CustomCheckFailMsg = "You need to donate in order to become this job!"
 })
 
-// Military Juggernaut
-TEAM_MILITARYJUG = DarkRP.createJob("Military Juggernaut", {
-	color = Color(0, 199, 255, 255),
-	model = {"models/csgoidf3pm.mdl"},
-	description = [[As you were left to rot from the ordinary military,
-		the civilization started their own.
-		Your job is to defend the people from threats.
-		You are the juggernaut in this forces.
-		This suit reduces the damage extremely much.
-		The weight however slows you down.]],
-	weapons = {"arrest_stick", "unarrest_stick", "weapon_cuff_police", "fas2_rpk", "fas2_m1911", "stunstick"},
+// HECU Juggernaut
+TEAM_MILITARYJUG = DarkRP.createJob("HECU Juggernaut", {
+	color = Color(166, 166, 166, 255),
+	model = {"models/jessev92/soldier_bms/marine1_poser.mdl"},
+	PlayerSpawn =function(ply) ply:SetSkin(15) ply:SetBodygroup(2, 0) ply:SetBodygroup(4, 4) end,
+	description = [[After the defeat in Black Mesa HECU marines were left behind and forgotten, the remnants joined the new Government of a small town in Nevada Desert. 
+		They remain the only military local defence power that is effective not only against aliens, but also human beings.]],
+	weapons = {"arrest_stick", "weapon_cuff_police", "fas2_rpk", "fas2_m1911", "stunstick"},
 	command = "militaryjuggernaut",
 	max = 1,
 	salary = 150,
@@ -523,16 +537,13 @@ TEAM_MILITARYJUG = DarkRP.createJob("Military Juggernaut", {
 })
 
 // Military Medic
-TEAM_MILITARYMEDIC = DarkRP.createJob("Military Medic", {
-	color = Color(0, 199, 255, 255),
-	model = {"models/csgosas2pm.mdl"},
-	description = [[As you were left to rot from the ordinary military,
-		the civilization started their own.
-		Your job is to defend the people from threats.
-		You are the medic of these forces.
-		Heal the ones of your forces from wounds.
-		Take care.]],
-	weapons = {"arrest_stick", "unarrest_stick", "weapon_cuff_police", "fas2_mp5k", "fas2_m1911", "fas2_ifak"},
+TEAM_MILITARYMEDIC = DarkRP.createJob("HECU Medic", {
+	color = Color(166, 166, 166, 255),
+	model = {"models/jessev92/soldier_bms/marine1_poser.mdl"},
+	PlayerSpawn =function(ply) ply:SetSkin(10) ply:SetBodygroup(2, 0) ply:SetBodygroup(4, 1) ply:SetArmor(50) end,
+	description = [[After the defeat in Black Mesa HECU marines were left behind and forgotten, the remnants joined the new Government of a small town in Nevada Desert. 
+		They remain the only military local defence power that is effective not only against aliens, but also human beings.]],
+	weapons = {"arrest_stick", "weapon_cuff_police", "fas2_mp5k", "fas2_m1911", "fas2_ifak"},
 	command = "militarymedic",
 	max = 2,
 	salary = 150,
@@ -544,6 +555,27 @@ TEAM_MILITARYMEDIC = DarkRP.createJob("Military Medic", {
 	candemote = true,
 	customCheck = function(ply) return table.HasValue(VIPRanks, ply:GetUserGroup()) end,
 	CustomCheckFailMsg = "You need to donate in order to become this job!"
+})
+
+// HECU Ops
+TEAM_MILITARYOPS = DarkRP.createJob("HECU Opposing Force", {
+	color = Color(166, 166, 166, 255),
+	model = {"models/jessev92/soldier_bms/marine1_poser.mdl"},
+	PlayerSpawn =function(ply) ply:SetSkin(2) ply:SetBodygroup(2, 0) ply:SetBodygroup(4, 3) ply:SetArmor(50) end,
+	description = [[After the defeat in Black Mesa HECU marines were left behind and forgotten, the remnants joined the new Government of a small town in Nevada Desert. 
+		They remain the only military local defence power that is effective not only against aliens, but also human beings.]],
+	weapons = {"arrest_stick", "weapon_cuff_police", "fas2_mp5sd6", "fas2_m1911", "stunstick"},
+	command = "militaryops",
+	max = 2,
+	salary = 150,
+	admin = 0,
+	vote = false,
+	category = "Government",
+	hasLicense = true,
+	mayorCanSetSalary = true,
+	candemote = true,
+	customCheck = function(ply) return table.HasValue(MemberRanks, ply:GetUserGroup()) end,
+	CustomCheckFailMsg = "You need to be Member to play this job! (Play 24h)"
 })
 
 //Hitman
@@ -582,6 +614,24 @@ TEAM_ADMIN = DarkRP.createJob("Staff on Duty", {
 	mayorCanSetSalary = false,
 	candemote = false
 })
+
+// Hunter
+TEAM_HUNTER = DarkRP.createJob("Hunter", {
+	color = Color(8, 64, 0, 255),
+	model = "models/player/john_marston.mdl",
+	description = [[The World is flooded with a varaty of abomination that are barely studied. Scientists as well as poachers are ready to pay big price for these materials. A hunter can kill creatures and collect their limbs, which he can later sell to the Poacher and get some money. He also has a bigger bag than other jobs to store more items. Hunt Antlionguards and Poison zombies to get most expensive items]],
+	weapons = {},
+	command = "hunter",
+	max = 2,
+	salary = 45,
+	admin = 0,
+	vote = false,
+	category = "Normal",
+	hasLicense = false,
+	mayorCanSetSalary = true,
+	candemote = true
+})
+
 --[[---------------------------------------------------------------------------
 Define which team joining players spawn into and what team you change to if demoted
 ---------------------------------------------------------------------------]]
@@ -601,6 +651,7 @@ GAMEMODE.CivilProtection = {
 	[TEAM_MILITARYJUG] = true,
 	[TEAM_MILITARYSNIPER] = true,
 	[TEAM_MILITARYMEDIC] = true,
+	[TEAM_MILITARYOPS] = true,
 }
 
 --[[---------------------------------------------------------------------------
